@@ -1,8 +1,15 @@
 const express = require("express");
 const db = require("./config/mongoDB");
-
 const app = express();
 const PORT = 5000;
+const userRoute = require("./routes/user");
+const authRoute = require("./routes/user");
+
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use("api/user", userRoute);
+app.use("api/auth", authRoute);
 
 db()
   .then(() => {
