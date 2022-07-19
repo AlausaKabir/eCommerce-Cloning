@@ -1,14 +1,10 @@
-const express = require("express");
-const db = require("./config/mongoDB");
+const database = require("./config/mongoDB");
+const server = require("./routes");
 
-const app = express();
-const PORT = 5000;
+const port = 3000;
 
-db()
-  .then(() => {
-    console.log("mongo_db database is connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-app.listen(PORT, () => console.log(`App is running on port: ${PORT}`));
+database()
+  .then(() => console.log("database connected"))
+  .catch((err) => console.log(err.message));
+
+server.listen(port, () => console.log(`App is running on port: ${port}`));
