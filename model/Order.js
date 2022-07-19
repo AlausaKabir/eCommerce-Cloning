@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const OrderSchema = new mongoose.Schema(
   {
@@ -14,7 +15,10 @@ const OrderSchema = new mongoose.Schema(
         },
       },
     ],
-    amount: { type: Number, required: true },
+    amount: {
+      type: Number,
+      require: true,
+    },
     address: { type: Object, required: true },
     status: { type: String, default: "pending" },
   },

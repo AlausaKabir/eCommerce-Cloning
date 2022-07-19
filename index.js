@@ -1,21 +1,10 @@
-const express = require("express");
-const db = require("./config/mongoDB");
-const app = express();
-const PORT = 5000;
-const userRoute = require("./routes/user");
-const authRoute = require("./routes/user");
+const database = require("./config/mongoDB");
+const server = require("./routes");
 
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use("api/user", userRoute);
-app.use("api/auth", authRoute);
+const port = 3000;
 
-db()
-  .then(() => {
-    console.log("mongo_db database is connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-app.listen(PORT, () => console.log(`App is running on port: ${PORT}`));
+database()
+  .then(() => console.log("database connected"))
+  .catch((err) => console.log(err.message));
+
+server.listen(port, () => console.log(`App is running on port: ${port}`));
